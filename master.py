@@ -19,6 +19,8 @@ def new_rand():
         pw_entry.insert(0, my_password)
     except ValueError:
         messagebox.showinfo("What are you doing?", 'ONLY DIGITS')
+    except Exception as e:
+        messagebox.showinfo("Unexpected Error", f'An unexpected error occurred: {str(e)}')
 
 def clipper():
     if pw_entry.get() == '':
@@ -51,4 +53,8 @@ clip_button = tkinter.Button(
     my_frame, text='Copy to Clipboard', command=clipper)
 clip_button.grid(row=0, column=1, padx=10)
 
-root.mainloop()
+try:
+    root.mainloop()
+except Exception as e:
+    messagebox.showinfo("Unexpected Error",
+                        f'An unexpected error occurred: {str(e)}')

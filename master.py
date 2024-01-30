@@ -36,8 +36,8 @@ label_frame.pack(pady=20)
 my_entry = tkinter.Entry(label_frame, font=('Helvetica', 24))
 my_entry.pack(pady=20, padx=20)
 
-pw_entry = tkinter.Entry(root, text='', font=(
-    'Helvetica', 24), bd=0, bg="systembuttonface")
+pw_entry = tkinter.Entry(root, font=('Helvetica', 24), bd=0, bg="systembuttonface")
+pw_entry.insert(0, '')
 pw_entry.pack(pady=20)
 
 my_frame = tkinter.Frame(root)

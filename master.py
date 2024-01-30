@@ -1,4 +1,5 @@
 import tkinter
+import string
 
 from tkinter import messagebox
 from random import randint
@@ -8,20 +9,41 @@ root.title('Shield-Shuffle')  # Sets window title.
 root.iconbitmap('gui/shield-shuffle.ico')  # Sets window icon.
 root.geometry('500x300')  # Sets window size.
 
+# Create a BooleanVar variable to store the state of the checkbox
+sensitive_chars_var = tkinter.BooleanVar()
+
+# Create a checkbox in the user interface
+# Checkbox text: "Exclude sensitive characters"
+# Link the checkbox to the variable sensitive_chars_var
+sensitive_chars_checkbox = tkinter.Checkbutton(root, text="Exclude sensitive characters", variable=sensitive_chars_var)
+
+# Add the checkbox to the user interface with a top padding of 20 pixels
+sensitive_chars_checkbox.pack(pady=20)
+
+
 def new_rand():
     """Generates a new random password and displays it in the GUI."""
     try:
         pw_entry.delete(0, tkinter.END)  # Clears the password field.
         pw_length = int(my_entry.get())  # Retrieves desired password length.
         if pw_length < 1 or pw_length > 300:
-            raise ValueError("Number of characters is incorrect. Should be 1 — 300 chars.")
-        my_password = ''.join(chr(randint(33, 126)) for _ in range(pw_length))  # Generates password.
+            raise ValueError(
+                "Number of characters is incorrect. Should be 1 — 300 chars.")
+        if sensitive_chars_var.get():
+            # Exclude sensitive characters
+            my_password = ''.join(chr(randint(33, 126)) for _ in range(
+                pw_length) if chr(randint(33, 126)) not in string.punctuation)
+        else:
+            # Include all characters
+            my_password = ''.join(chr(randint(33, 126))
+                                  for _ in range(pw_length))
         pw_entry.insert(0, my_password)  # Displays generated password.
     except ValueError:  # Handles invalid input for password length.
         messagebox.showinfo("What are you doing?", 'BEHAVE! ONLY DIGITS!')
     except Exception as e:  # Handles unexpected errors.
-        messagebox.showinfo("Unexpected Error", f'An unexpected error occurred: {str(e)}')
-
+        messagebox.showinfo("Unexpected Error",
+                            f'An unexpected error occurred: {str(e)}')
+        
 def clipper():
     """Copies the generated password to clipboard if not empty, shows a messagebox otherwise."""
     if pw_entry.get() == '':

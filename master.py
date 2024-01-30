@@ -12,15 +12,11 @@ root.geometry('500x300')
 def new_rand():
     pw_entry.delete(0, tkinter.END)
     pw_length = my_entry.get()
-    if not pw_length.isdigit() or int(pw_length) < 1 or int(pw_length) > 40:
+    if not pw_length.isdigit() or int(pw_length) < 1 or int(pw_length) > 300:
         messagebox.showinfo(
-            "What are you doing?", "Number of characters is incorrect. Should be 1 — 40 chars and ONLY digits.")
+            "What are you doing?", "Number of characters is incorrect. Should be 1 — 300 chars and ONLY digits.")
         return
-    my_password = ''
-
-    for x in range(int(pw_length)):
-        my_password += chr(randint(33, 126))
-
+    my_password = ''.join(chr(randint(33, 126)) for _ in range(int(pw_length)))
     pw_entry.insert(0, my_password)
 
 
@@ -34,7 +30,7 @@ def clipper():
             "Well...", "Password copied to clipboard, don't forget to send to hacker!")
 
 
-label_frame = tkinter.LabelFrame(root, text="How Many Characters? (1 — 40)")
+label_frame = tkinter.LabelFrame(root, text="How Many Characters? (1 — 300)")
 label_frame.pack(pady=20)
 
 my_entry = tkinter.Entry(label_frame, font=('Helvetica', 24))

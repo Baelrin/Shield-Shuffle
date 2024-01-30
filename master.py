@@ -6,7 +6,7 @@ from random import randint
 root = tkinter.Tk()
 root.title('Shield-Shuffle')  # Sets window title.
 root.iconbitmap('gui/shield-shuffle.ico')  # Sets window icon.
-root.geometry('500x500')  # Sets window size.
+root.geometry('450x500')  # Sets window size.
 
 # Change the color of the application window to black
 root.configure(bg='black')
@@ -22,7 +22,7 @@ checkbox_container.grid(row=0, column=0, padx=20, pady=20)
 # Checkbox text: "Exclude sensitive characters"
 # Link the checkbox to the variable sensitive_chars_var
 sensitive_chars_checkbox = tkinter.Checkbutton(
-    checkbox_container, text="Exclude sensitive characters", variable=sensitive_chars_var, fg='green', bg='black')
+    checkbox_container, text="Exclude sensitive characters", variable=sensitive_chars_var, fg='green', bg='black', selectcolor='black', activebackground='green')
 sensitive_chars_checkbox.pack()
 
 # Create a container for the buttons

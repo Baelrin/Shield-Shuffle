@@ -18,7 +18,7 @@ def new_rand():
         my_password = ''.join(chr(randint(33, 126)) for _ in range(pw_length))  # Generates password.
         pw_entry.insert(0, my_password)  # Displays generated password.
     except ValueError:  # Handles invalid input for password length.
-        messagebox.showinfo("What are you doing?", 'ONLY DIGITS')
+        messagebox.showinfo("What are you doing?", 'BEHAVE! ONLY DIGITS!')
     except Exception as e:  # Handles unexpected errors.
         messagebox.showinfo("Unexpected Error", f'An unexpected error occurred: {str(e)}')
 

@@ -8,17 +8,17 @@ root.title('Shield-Shuffle')
 root.iconbitmap('gui/shield-shuffle.ico')
 root.geometry('500x300')
 
-
 def new_rand():
-    pw_entry.delete(0, tkinter.END)
-    pw_length = my_entry.get()
-    if not pw_length.isdigit() or int(pw_length) < 1 or int(pw_length) > 300:
-        messagebox.showinfo(
-            "What are you doing?", "Number of characters is incorrect. Should be 1 — 300 chars and ONLY digits.")
-        return
-    my_password = ''.join(chr(randint(33, 126)) for _ in range(int(pw_length)))
-    pw_entry.insert(0, my_password)
-
+    """Generates a new random password"""
+    try:
+        pw_entry.delete(0, tkinter.END)
+        pw_length = int(my_entry.get())
+        if pw_length < 1 or pw_length > 300:
+            raise ValueError("Number of characters is incorrect. Should be 1 — 300 chars.")
+        my_password = ''.join(chr(randint(33, 126)) for _ in range(pw_length))
+        pw_entry.insert(0, my_password)
+    except ValueError:
+        messagebox.showinfo("What are you doing?", 'ONLY DIGITS')
 
 def clipper():
     if pw_entry.get() == '':

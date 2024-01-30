@@ -8,22 +8,25 @@ root.title('Shield-Shuffle')  # Sets window title.
 root.iconbitmap('gui/shield-shuffle.ico')  # Sets window icon.
 root.geometry('500x500')  # Sets window size.
 
+# Change the color of the application window to black
+root.configure(bg='black')
+
 # Create a BooleanVar variable to store the state of the checkbox
 sensitive_chars_var = tkinter.BooleanVar()
 
 # Create a container for the checkbox
-checkbox_container = tkinter.Frame(root)
+checkbox_container = tkinter.Frame(root, bg='black')
 checkbox_container.grid(row=0, column=0, padx=20, pady=20)
 
 # Create a checkbox in the user interface
 # Checkbox text: "Exclude sensitive characters"
 # Link the checkbox to the variable sensitive_chars_var
 sensitive_chars_checkbox = tkinter.Checkbutton(
-    checkbox_container, text="Exclude sensitive characters", variable=sensitive_chars_var)
+    checkbox_container, text="Exclude sensitive characters", variable=sensitive_chars_var, fg='green', bg='black')
 sensitive_chars_checkbox.pack()
 
 # Create a container for the buttons
-buttons_container = tkinter.Frame(root)
+buttons_container = tkinter.Frame(root, bg='black')
 buttons_container.grid(row=1, column=0, padx=20, pady=20)
 
 
@@ -54,7 +57,7 @@ def new_rand():
 
 # Create a button to generate a new random password
 generate_button = tkinter.Button(
-    buttons_container, text='Generate Strong Password', command=new_rand)
+    buttons_container, text='Generate Strong Password', command=new_rand, fg='green', bg='black')
 generate_button.grid(row=0, column=0, padx=10)
 
 
@@ -73,20 +76,22 @@ def clipper():
 
 # Create a button to copy the generated password to clipboard
 copy_button = tkinter.Button(
-    buttons_container, text='Copy to Clipboard', command=clipper)
+    buttons_container, text='Copy to Clipboard', command=clipper, fg='green', bg='black')
 copy_button.grid(row=0, column=1, padx=10)
 
 # Creates a label frame to ask for desired password length.
-label_frame = tkinter.LabelFrame(root, text="How Many Characters? (1 — 300)")
+label_frame = tkinter.LabelFrame(
+    root, text="How Many Characters? (1 — 300)", fg='green', bg='black')
 label_frame.grid(row=2, column=0, padx=20, pady=20)
 
 # Creates an entry widget for inputting desired password length.
-my_entry = tkinter.Entry(label_frame, font=('Helvetica', 24))
+my_entry = tkinter.Entry(label_frame, font=(
+    'Helvetica', 24), fg='green', bg='black')
 my_entry.grid(row=0, column=0, padx=20, pady=20)
 
 # Creates an entry widget to display the generated password.
 pw_entry = tkinter.Entry(root, font=('Helvetica', 24),
-                         bd=0, bg="systembuttonface")
+                         bd=0, fg='green', bg='black')
 pw_entry.insert(0, '')  # Ensures the password field is empty at the start.
 pw_entry.grid(row=3, column=0, padx=20, pady=20)
 
